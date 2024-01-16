@@ -32,23 +32,24 @@ fun OnBoardingPage(
         Image(
             modifier = modifier
                 .fillMaxWidth()
-                .fillMaxHeight(fraction = 0.5f)
-            ,
+                .fillMaxHeight(fraction = 0.5f),
             painter = painterResource(id = page.image),
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
         Text(
-            modifier = modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp),
+            modifier = modifier.padding(16.dp),
             text = page.title,
             style = MaterialTheme.typography.displayMedium,
             color =  if(isSystemInDarkTheme()) Color.White else Color.Black
         )
         Text(
-            modifier = modifier.padding(start = 16.dp, end = 16.dp, bottom = 16.dp),
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(16.dp),
             text = page.description,
             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Normal),
-            fontSize = 29.sp,//might have to change the letter size
+            fontSize = 20.sp,//might have to change the letter size
             color =  if(isSystemInDarkTheme()) Color.White else Color.Black
         )
     }
@@ -59,6 +60,6 @@ fun OnBoardingPage(
 @Composable
 fun OnboardPagePreview() {
     NarutoUniverseTheme {
-        OnBoardingPage(page = pages[0])
+        OnBoardingPage(page = pages[2])
     }
 }

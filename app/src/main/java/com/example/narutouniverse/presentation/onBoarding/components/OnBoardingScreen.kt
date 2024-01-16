@@ -2,6 +2,7 @@ package com.example.narutouniverse.presentation.onBoarding.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,15 +18,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.narutouniverse.presentation.onBoarding.OnBoardingEvent
 import com.example.narutouniverse.ui.theme.NarutoUniverseTheme
+import com.example.narutouniverse.utils.Screens
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun OnBoardingScreen(
     modifier: Modifier = Modifier,
-    onEvent: (OnBoardingEvent) -> Unit
+    onEvent: (OnBoardingEvent) -> Unit,
+    navController: NavController
 ) {
     Column(
         modifier = modifier
@@ -43,29 +48,31 @@ fun OnBoardingScreen(
         HorizontalPager(state = pagerState) { pageIndex ->
             OnBoardingPage(page = pages[pageIndex])
         }
-//        Spacer(modifier = modifier.weight(1f))
+
         Row(
             modifier = modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-//            horizontalArrangement = Arrangement.SpaceBetween,
+            horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             PageIndicator(pageSize = pages.size, selectedPage = currentPage)
 
-            Spacer(modifier = modifier.weight(1f))
-
             Row{
+
+                BackButton(page = currentPage) {
+                    scope.launch {
+                        pagerState.animateScrollToPage(page = currentPage - 1)
+                    }
+                }
 
                 NextButton(page = currentPage) {
                     scope.launch {
                         pagerState.animateScrollToPage(page = currentPage + 1)
                     }
-                }
-
-                BackButton(page = currentPage) {
-                    scope.launch {
-                        pagerState.animateScrollToPage(page = currentPage - 1)
+                    if(currentPage == 2){
+                        onEvent(OnBoardingEvent.SaveAppEntry)
+                        navController.navigate(Screens.HomeScreen.route)
                     }
                 }
             }
@@ -77,6 +84,9 @@ fun OnBoardingScreen(
 @Composable
 fun OnBoardScreenPreview() {
     NarutoUniverseTheme {
-        OnBoardingScreen(onEvent = {})
+        OnBoardingScreen(
+            navController = rememberNavController(),
+            onEvent = {}
+        )
     }
 }

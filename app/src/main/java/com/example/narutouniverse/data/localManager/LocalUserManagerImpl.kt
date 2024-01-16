@@ -12,12 +12,12 @@ import com.example.narutouniverse.utils.Constants.USER_SETTINGS
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class LocalManagerImpl(
+class LocalUserManagerImpl(
     private val context: Context
 ) : LocalUserManager {
     override suspend fun saveAppEntry() {
        context.dataStore.edit { settings ->
-           settings[PreferencesKeys.APP_ENTRY] //here we are getting the set value
+           settings[PreferencesKeys.APP_ENTRY] = true //here we are getting the set value
        }
     }
 

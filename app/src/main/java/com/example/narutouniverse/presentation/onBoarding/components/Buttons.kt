@@ -23,13 +23,13 @@ fun NextButton(
     Button(
         onClick = onClick,
         colors = ButtonDefaults.buttonColors(
-            containerColor = MaterialTheme.colorScheme.secondary,
+            containerColor = MaterialTheme.colorScheme.secondaryContainer,
             contentColor = if(isSystemInDarkTheme()) Color.White else Color.Black
         ),
         shape = RoundedCornerShape(size = 6.dp)
     ) {
         Text(
-            text = if(page == 0) "Next" else "Get Started",
+            text = if(page != 2) "Next" else "Get Started",
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold)
         )
     }
@@ -41,16 +41,17 @@ fun BackButton(
     onClick: () -> Unit
 ) {
 
-    if(page > 0){
         TextButton(
             onClick = onClick,
         ) {
-            Text(
-                text = "Back",
-                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold)
-            )
+            (if(page != 0)"Back" else null)?.let {
+                Text(
+                    text = it,
+                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+                    color = if(isSystemInDarkTheme()) Color.White else Color.Black
+                )
+            }
         }
-    }
 }
 
 @Preview
