@@ -23,11 +23,12 @@ class MainViewModel @Inject constructor(
 
     init {
         appEntryUsesCases.readAppEntry().onEach { shouldStartFromHomeScreen ->
-            startDestination = if(shouldStartFromHomeScreen){
-                Screens.NarutoAppNavigation.route
-            } else {
-                Screens.AppStartNavigation.route
+            if(shouldStartFromHomeScreen){
+                startDestination = Screens.NarutoAppNavigation.route
             }
+//            if(!shouldStartFromHomeScreen){
+//                startDestination = Screens.AppStartNavigation.route
+//            }
 //            delay(500)
         }.launchIn(viewModelScope)
     }
