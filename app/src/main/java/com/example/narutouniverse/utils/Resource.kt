@@ -1,13 +1,7 @@
 package com.example.narutouniverse.utils
 
-sealed class Resource<T> {
-    data class Loading<T>(val isLoading: Boolean): Resource<T>()
-    data class Success<T>(val data: T): Resource<T>()
-    data class Response<T>(val uiComponent: UIComponent, val error: Exception? = null): Resource<T>()
-}
-
-sealed class UIComponent {
-    data class Toast(val message: String): UIComponent()
-    data class Dialog(val title: String, val message: String): UIComponent()
-    data class None(val message: String? = null): UIComponent()
+sealed class Resource<T>(val data: T? = null, val message: String? = null) {
+    class Loading<T>(): Resource<T>()
+    class Success<T>(data: T?): Resource<T>(data)
+    class Error<T>(data: T?, message: String?): Resource<T>(data, message)
 }

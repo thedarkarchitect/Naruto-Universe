@@ -1,4 +1,4 @@
-package com.example.narutouniverse.domain.model
+package com.example.narutouniverse.data.remote.dto.characterDto
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

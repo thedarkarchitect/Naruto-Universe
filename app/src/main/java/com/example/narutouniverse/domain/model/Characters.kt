@@ -1,14 +1,13 @@
 package com.example.narutouniverse.domain.model
 
-import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
+import com.example.narutouniverse.data.remote.dto.characterDto.Debut
+import com.example.narutouniverse.data.remote.dto.characterDto.Family
+import com.example.narutouniverse.data.remote.dto.characterDto.Personal
+import com.example.narutouniverse.data.remote.dto.characterDto.Rank
+import com.example.narutouniverse.data.remote.dto.characterDto.VoiceActors
 
-@Parcelize
-@Entity
 data class Characters (
-    @PrimaryKey val id: Int,
+    val id: Int,
     val name: String,
     val images: List<String?>,
     val debut: Debut,
@@ -20,4 +19,4 @@ data class Characters (
     val tools: List<String>,
     val uniqueTraits: List<String?>,
     val voiceActors: VoiceActors
-) : Parcelable
+)

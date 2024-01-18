@@ -1,6 +1,6 @@
-package com.example.narutouniverse.data.remote.dto.characterDto
+package com.example.narutouniverse.domain.model
 
-import com.example.narutouniverse.domain.model.Characters
+
 
 data class CharacterResponse(
     val characters: List<Characters>,

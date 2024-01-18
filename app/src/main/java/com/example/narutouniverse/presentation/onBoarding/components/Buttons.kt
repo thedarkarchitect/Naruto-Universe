@@ -40,18 +40,17 @@ fun BackButton(
     page: Int,
     onClick: () -> Unit
 ) {
-
-        TextButton(
-            onClick = onClick,
-        ) {
-            (if(page != 0)"Back" else null)?.let {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
-                    color = if(isSystemInDarkTheme()) Color.White else Color.Black
-                )
-            }
+    TextButton(
+        onClick = onClick,
+    ) {
+        (if(page != 0)"Back" else null)?.let {
+            Text(
+                text = it,
+                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
+                color = if(isSystemInDarkTheme()) Color.White else Color.Black
+            )
         }
+    }
 }
 
 @Preview
